@@ -16,18 +16,17 @@ class Mode:
     	rospy.init_node('change_control_mode')
 
 
-    def change_control_mode_client(self,modes):
-        print('controlmode')
-        rospy.wait_for_service('ControlMode')
+    def change_control_mode_client(self,requested_mode):
+
+        rospy.wait_for_service('controlmode_service')
         try:
-            ControlMode = rospy.ServiceProxy('ControlMode', ControlMode)
-            response = ControlMode(modes)
-            print('entered try')
+            control_mode = rospy.ServiceProxy('controlmode_service', ControlMode)
+            response = control_mode(requested_mode)
+            print(response.mode)
             return response.mode
         except rospy.ServiceException, e:
             print "Service call failed"
     
-
 
 if __name__ == '__main__':
     
