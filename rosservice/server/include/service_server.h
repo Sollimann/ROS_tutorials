@@ -1,3 +1,8 @@
+
+
+#ifndef SERVICE_SERVER_H
+#define SERVICE_SERVER_H
+
 #include <ros/ros.h>
 #include "tutorial_msgs/ControlMode.h"
 #include <typeinfo>   // operator typeid
@@ -19,6 +24,6 @@ class Mode
 };
 
 
-void getControlMode(std::vector<int> const &input);
+void getControlMode(std::vector<int> const &input);  
 
 
