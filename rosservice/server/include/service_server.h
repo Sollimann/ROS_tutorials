@@ -26,4 +26,5 @@ class Mode
 
 void getControlMode(std::vector<int> const &input);  
 
+#endif
 
