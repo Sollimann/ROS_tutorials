@@ -12,7 +12,11 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
   tutorial_msgs
+  cv_bridge
+  image_transport
 )
+
+find_package(OpenCV REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 find_package(Boost REQUIRED COMPONENTS system)
@@ -123,8 +127,9 @@ DEPENDS #eigen
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -136,6 +141,9 @@ include_directories(
 add_executable(turtlebot_move_action_server src/turtlebot_move_action_server.cpp)
 target_link_libraries(turtlebot_move_action_server ${Boost_LIBRARIES} ${catkin_LIBRARIES})
 #add_dependencies(turtlebot_move_action_server turtlebot_actions_gencpp)
+
+add_executable(camera_operations src/camera_operations.cpp)
+target_link_libraries(camera_operations ${catkin_LIBRARIES} ${OpenCV_LIBS})
 
 
 ## Specify libraries to link a library or executable target against
